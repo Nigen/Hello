@@ -1,14 +1,25 @@
-function tick() {
-  const element = (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
-}
+var News = React.createClass({
+  render: function() {
+    return (
+      <div className="news">
+        К сожалению, новостей нет.
+      </div>
+    );
+  }
+});
 
-setInterval(tick, 1000);
+var App = React.createClass({
+  render: function() {
+    return (
+      <div className="app">
+        Всем привет, я компонент App! Я умею отображать новости.
+        <News />
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
