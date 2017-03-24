@@ -1,33 +1,37 @@
-function Blog(props) {
-  const sidebar = (
-    <ul>
-      {props.posts.map((post) =>
-        <li key={post.id}>
-          {post.title}
-        </li>
-      )}
-    </ul>
-  );
-  const content = props.posts.map((post) =>
-    <div key={post.id}>
-      <h3>{post.title}</h3>
-      <p>{post.content}</p>
-    </div>
-  );
-  return (
-    <div>
-      {sidebar}
-      <hr />
-      {content}
-    </div>
-  );
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+      this.setState({
+        value: event.target.value.substr(0, 140)
+      });
+    }
+
+  handleSubmit(event) {
+    alert('Text field value is: ' + this.state.value);
+  }
+
+  render() {
+    return (
+      <div>
+        <input type="text"
+          placeholder="Hello!"
+          value={this.state.value}
+          onChange={this.handleChange} />
+        <button onClick={this.handleSubmit}>
+          Submit
+        </button>
+      </div>
+    );
+  }
 }
 
-const posts = [
-  {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-  {id: 2, title: 'Installation', content: 'You can install React from npm.'}
-];
 ReactDOM.render(
-  <Blog posts={posts} />,
+  <Form />,
   document.getElementById('root')
 );
